@@ -1,0 +1,63 @@
+Các thành phần cơ bản : 
+
+COMMIT_EDITMSG : Chứa toàn bộ messages thông báo có thay đổi gì của file 
+
+HEAD : Chứa reference xem mình đang ở branch nào ( Check xem có bao nhiêu Branches ls .git/refs/heads/ ) 
+
+Config : Chứa thông tin liên quan đến repository : User, Email đang hoạt động 
+
+Description : Chứa tên và mô tả của dự án 
+
+hooks : Chứa những scripts để create và setup các automates ( ít sử dụng ) 
+
+Index : Lưu chữ các file nằm trong khu vực staging 
+
+Info : Chứa các items mà không muốn GIT checking 
+
+Logs : Chứa các file ghi lại các thay đổi 
+
+Objects : Database để lưu lại các thông tin của GIT 
+
+Refs : Chứa các file tham chiếu về : Branches và tags các Repo  
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Show root password sau khi cài đặt : cat /etc/gitlab/initial_root_password  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+	
+Các câu lệnh liên quan đến GIT 
+
+1. git init : khởi tạo thư mục để git tiến hành lưu lại các thay đổi : git init 
+
+2. Cấu hình git config : cấu hình user, mail 
+	
+	git config user.email lamtn@gmail.com 
+
+	git config user.name "LamTa" 
+
+3.   Git status : Kiểm tra thông tin thay đổi 
+
+4.   Git config –list : Kiểm tra thông tin user  
+
+5.   git log : Show log thay đổi 
+
+6.   git branch –a : show all branch 
+
+7.   git branch developerA : create branch developerA  
+
+8.   git checkout developerA : switch to branch developerA  
+
+9.   git checkout -b developerB : create branch developerB and switch to branch developerB now 
+
+10. git merge developerB : merge all file developerB  > branch master 
+
+11. git branch -d developerA : delete branh  developerA  
+
+12. Git pull : add toàn bộ change mới nhất về 
+
+13. Git revert HEAD : Quay lại thời điểm thay đổi gần nhất 
+
+14. Git diff : show thông tin thay đổi các file  
+
+ 
