@@ -1,0 +1,26 @@
+[1] Cấu hình SSL cho GitLab
+mkdir -p /etc/gitlab/ssl && cd /etc/gitlab/ssl
+openssl genrsa -out key.pem 2048
+openssl req -out crs.csr -key key.pem -new
+openssl req -x509 -sha256 -days 356 -key key.pem -in crs.csr -out certificate.pem
+chmod 700 /etc/gitlab/ssl
+
+[2] Sửa file cấu hình: 
+sudo vim /etc/gitlab/gitlab.rb
+:set nu : show số dòng trong file cấu hình
+tại line 32: sửa lại tên trang web
+1648  nginx['ssl_certificate'] = "/etc/gitlab/ssl/certificate.pem"
+1649  nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/#key.pem"
+
+[3] Check xem cấu hình đã đúng chưa:
+grep do.class /etc/gitlab/gitlab.rb
+grep ssl_certificate /etc/gitlab/gitlab.rb
+Nếu trả về :
+external_url 'https://gitlab.do.class'
+nginx['ssl_certificate'] = "/etc/gitlab/ssl/certificate.pem"
+nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/key.pem"
+>>> Cấu hình đã đúng
+
+[4] Restart lai service gitlab
+sudo gitlab-ctl reconfigure
+
