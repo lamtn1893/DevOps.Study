@@ -21,6 +21,6 @@ nginx['ssl_certificate'] = "/etc/gitlab/ssl/certificate.pem"
 nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/key.pem"
 >>> Cấu hình đã đúng
 
-[4] Restart lai service gitlab
+[4] Restart lại service gitlab
 sudo gitlab-ctl reconfigure
 
