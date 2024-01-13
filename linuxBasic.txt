@@ -1,4 +1,4 @@
-[1]User
+[1] User
 Default User : root
 Nomal user   : Các user được khởi tạo trong Linux
 Service user : Các user được khởi tại từ các application (vagran, sshd, ...)
@@ -11,23 +11,62 @@ cat /etc/gshadow: Chứa thông tin của group (ít khai thác thông tin ở f
 
 vi /etc/sudoers :  mở file để cấu hình cho User có quyền Root
 
-[2]SSH Key
+[2] SSH Key
 ssh-keygen : Khoi tao key de shh
 ssh-copy-id lamtn@192.168.239.130 : dung tai may 192.168.239.129 go lenh nhu tren de copy key vao host 192.168.239.130
 
-[3]Copy file
+[3] Copy file
 scp testCopyFile.txt lamtn@192.168.239.130:/home/lamtn
 
-[4]PS
+[4] PS
 ps : show cac tien trinh dang chay
 ps -eaf : show toan bo cac tien trinh dang chay
 top : show all toan bo cac tien trinh dang chay real time
 htop : show all tien trinh 1 cach truc quan hon ( cai nay phai cai htop )
 
-[5]Hen gio chay 1 ung ung dung
+[5] Hen gio chay 1 ung ung dung
 crontab -e : Xuat hien bang de nhap thong tin
 
+[6]Cai dat phan mem tren server:
+yum list installed : show all phan mem dang cai
+yum check-update   : check xem co phan mem nao can update khong
+yum info vsftpd    : show thong tin phan mem da cai dat
+yum history list   : show history cai dat, xoa, update
+rpm -qa		   : show all phan mem da cai dat
+wget http://       : tai phan mem ve may
+rpm -ivh file.rpm  : install phan mem co duoi.rpm tu may tinh
+rpm -e vsftp	   : Xoa phan mem vsftp
+rpm -ivh http:://  : Tai va cai truc tiep bang duong link
+rpm -ql htop	   : Check duong dan cai htop
+diff fileA file B  : So sanh khac biet giua 2 file
+firewall-cmd --list-service : List cac service duoc mo port
+firewall-cmd --list-port    : Lsit cac port dang open
+firewall-cmd --add-port=2222/tcp : oport 2222 theo giao thuc tcp (neu mo port cach nay chi luu thay doi tren Ram neu reload lai dich vu se mat cau hinh)
+firewall-cmd --reload : reload lai dich vu
+firewall-cmd --add-port=2222/tcp --permanent : open port 2222 va luu lai vao file cau hinh nen reload lai se khong bi mat
+firewall-cmd --remove-port=2223/tcp --permanent : close port
+cat /etc/resolv.conf : check DNS
+netstat -nlpt : Show dich vu chay port nao
 
+[7] Log
+journalctl : show all logs
+journalctl -f : show logs dang dien ra 
+journalctl | grep ssh : Show logs lien quan den ssh
+tail -f /var/log/messages : show logs dang dien ra
+
+[8] Linux addvance 
+8.1: Find
+find : Dung de tim file mong muon trong moi truong linux
+find / -type f -name lamtn.txt : tìm file lamtn.txt từ folder / 
+find / -type f -name lamtn.txt -exec rm -rf {} \; : Tim file lamtn tu thu muc / va xoa file
+find / -type d -name lamtn : thay bang d de tim folder
+find / -type d -perm 644   : tim toan bo folder co quyen 644
+find . -type d -empty	   : tim tai vi tri hien tai folder empty
+find . -type d -empty -exec rm -rf {} \; : tim va xoa folder empty o vi tri hien tai
+find . -type f -cmin -10 : tim file tai thu muc hien tai vua dc sua 10p truoc
+find / -type f -size +10M : tim toan bo file co dung luong > 10M
+
+8.2: Cat
 
 
 
