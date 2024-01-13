@@ -27,8 +27,7 @@ htop : show all tien trinh 1 cach truc quan hon ( cai nay phai cai htop )
 [5]Hen gio chay 1 ung ung dung
 crontab -e : Xuat hien bang de nhap thong tin
 
-
-
+[6]Quan ly cac ung dung cai tren Server
 
 
 
