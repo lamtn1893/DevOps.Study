@@ -27,6 +27,7 @@ htop : show all tien trinh 1 cach truc quan hon ( cai nay phai cai htop )
 [5] Hen gio chay 1 ung ung dung
 crontab -e : Xuat hien bang de nhap thong tin
 
+
 [6]Cai dat phan mem tren server:
 yum list installed : show all phan mem dang cai
 yum check-update   : check xem co phan mem nao can update khong
@@ -67,8 +68,6 @@ find . -type f -cmin -10 : tim file tai thu muc hien tai vua dc sua 10p truoc
 find / -type f -size +10M : tim toan bo file co dung luong > 10M
 
 8.2: Cat
-
-
 
 
 
