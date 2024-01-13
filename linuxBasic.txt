@@ -18,6 +18,14 @@ ssh-copy-id lamtn@192.168.239.130 : dung tai may 192.168.239.129 go lenh nhu tre
 [3]Copy file
 scp testCopyFile.txt lamtn@192.168.239.130:/home/lamtn
 
+[4]PS
+ps : show cac tien trinh dang chay
+ps -eaf : show toan bo cac tien trinh dang chay
+top : show all toan bo cac tien trinh dang chay real time
+htop : show all tien trinh 1 cach truc quan hon ( cai nay phai cai htop )
+
+[5]Hen gio chay 1 ung ung dung
+crontab -e : Xuat hien bang de nhap thong tin
 
 
 
