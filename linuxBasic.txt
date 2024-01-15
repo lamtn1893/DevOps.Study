@@ -67,10 +67,64 @@ find . -type d -empty -exec rm -rf {} \; : tim va xoa folder empty o vi tri hien
 find . -type f -cmin -10 : tim file tai thu muc hien tai vua dc sua 10p truoc
 find / -type f -size +10M : tim toan bo file co dung luong > 10M
 
-8.2: Cat
+8.2: cat
+cat > lamtn.txt
+Nhap noi dung
+\
+Cau lenh dung de nhap text vao file lamtn.txt
 
+8.3: head va tail
+head -n 20 /etc/ssh/sshd_config : show 20 dong dau tien cua file
+tail -n 20 /etc/ssh/sshd_config	: show 20 dong cuoi cua file
 
+8.4 : grep : tim chinh xac phan biet chu hoa va thuong
+grep "system" /var/log//messages : tim toan bo cac dong co chu "sytem" trong file phan biet chu hoa thuong
+grep - i "System" /var/log//messages :  tim toan bo cac dong co chu "sytem" trong file KHONG phan biet chu hoa thuong
+grep - i -w "System" /var/log//messages : tim toan bo cac dong co chu "sytem" dung im minh trong file KHONG phan biet chu hoa thuong
+grep - i -w -n "System" /var/log//messages : them -n de hien so dong
+grep - i -w -n -B 3 -A 2 "System" /var/log//messages : them them 3 dong o truoc va 2 dong o sau cac dong can tim kiem
+grep -v "System" /var/log//messages : Tim tat ca cac dong khong co chu System
 
+8.5 : diff
+diff -y lamtn.txt lamtn2.txt : them tham so -y de hien khac nhau cua 2 file 
+diff -c lamtn.txt lamtn2.txt
+diff -q lamtn.txt lamtn2.txt : check xem 2 file co khac nhau khong ( khong hien output ma chi hien thong bao khi khac nhau )
+diff -i lamtn.txt lamtn2.txt : them -i check khong biet chu hoa thuong
+diff -B lamtn.txt lamtn2.txt : them -B check bo qua blank line
+diff -B -s lamtn.txt lamtn2.txt :
+diff -w -s lamtn.txt lamtn2.txt : check bo qua whitespaces
+diff -r /bin/ /sbin/ : check su khac nhau cua 2 folder
 
+8.6 : wc
+wc /etc/passwd : đếm xem file passwd có bao nhiêu dòng, bao nhiêu chữ, bao nhiêu ký tự
+wc -l /etc/passwd : đếm xem file có bao nhiêu dòng
+wc -w /etc/passwd : đếm xem file có bao nhiêu chữ
+wc -c /etc/passwd : đếm xem file có bao nhiêu ký tự
+ls -la | nl : hiện thị thêm số dòng
 
+8.7 : tr : dùng để chuyển định dạng chữ VD từ chữ thường > chữ hoa
+cat lamtn.txt | tr \ [:lower:] \ [:upper:] : chuyển đổi toàn bộ ký tự của file từ in thường > in hoa
+cat lamtn.txt | tr \ [:lower:] \ [:upper:] | tr \\t \, : chuyển đổi sau đó replace khoảng cách của tab thành dấu ","
+cat lamtn.txt | tr \ [:lower:] \ [:upper:] | tr \\t \, | tr -s \\n : thêm tr -s \\n để xóa các dòng trống
 
+8.8 : sort
+sort /etc/passwd : sort theo a>z
+sort -k 1,2 /etc/passwd : sort cot 1,2 theo thứ tự a > z
+sort -n -k 2 -t \, /etc/passwd : -n sort theo số từ bé > lớn, -k 2 sort ở cột thứ 2, -t \, sort xong thêm dấu ","
+sort -n -k 2 -t \, -r /etc/passwd : -r sort đảo ngược lại từ số lớn > bé
+sort -u /etc/passwd : sort và loại bỏ các dòng trùng ( có phân biệt chữ hoa và thường )
+sort -u -f /etc/passwd : sort và loại bỏ các dòng trùng ( không phân biệt chữ hoa và thường )
+sort -c /etc/passwd : check xem file đã được sort hay chưa
+
+8.9 : uniq
+sort /etc/passwd | uniq -i -c : sort sau đó đếm các đổi tượng đã bị lặp bao nhiêu lần
+sort /etc/passwd | uniq -c -u : -u để show các dòng không bị lặp
+
+8.10 : cut
+cut -f 1 -d \, | sort | uniq:  lamtn.txt : cut và giữ lại cột 1 của file sau đó sort và bỏ các dòng trùng nhau. (1 là cột cần giữ lại)
+
+8.11 : sed
+sed -i 's/monday/lam/g' testCopyFile.txt : tìm từ monday trong file và thay thế bằng từ lam. ( tham sồ -i là để lưu lại thay đổi )
+sed -i 's/monday/lam/I' testCopyFile.txt : I không quan tâm chữ hoa và thường
+sed -e '1,2 s/Book : //I' testSed.txt : Chỉ thay đổi dòng 1,2
+sed -n '1,3 s/Book : //Ip' testSed.txt : Chỉ in ra nhưng dòng thay đổi
