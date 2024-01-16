@@ -1,0 +1,85 @@
+Các thành phần cơ bản : 
+
+COMMIT_EDITMSG : Chứa toàn bộ messages thông báo có thay đổi gì của file 
+
+HEAD : Chứa reference xem mình đang ở branch nào ( Check xem có bao nhiêu Branches ls .git/refs/heads/ ) 
+
+Config : Chứa thông tin liên quan đến repository : User, Email đang hoạt động 
+
+Description : Chứa tên và mô tả của dự án 
+
+hooks : Chứa những scripts để create và setup các automates ( ít sử dụng ) 
+
+Index : Lưu chữ các file nằm trong khu vực staging 
+
+Info : Chứa các items mà không muốn GIT checking 
+
+Logs : Chứa các file ghi lại các thay đổi 
+
+Objects : Database để lưu lại các thông tin của GIT 
+
+Refs : Chứa các file tham chiếu về : Branches và tags các Repo  
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Show root password sau khi cài đặt : cat /etc/gitlab/initial_root_password  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+	
+Các câu lệnh liên quan đến GIT 
+
+1. git init : khởi tạo thư mục để git tiến hành lưu lại các thay đổi : git init 
+
+2. Cấu hình git config : cấu hình user, mail 
+	
+	git config user.email lamtn@gmail.com 
+
+	git config user.name "LamTa" 
+
+3.   Git status : Kiểm tra thông tin thay đổi 
+
+4.   Git config –list : Kiểm tra thông tin user  
+
+5.   git log : Show log thay đổi 
+
+6.   git branch –a : show all branch 
+
+7.   git branch developerA : create branch developerA  
+
+8.   git checkout developerA : switch to branch developerA  
+
+9.   git checkout -b developerB : create branch developerB and switch to branch developerB now 
+
+10. git merge developerB : merge all file developerB  > branch master 
+
+11. git branch -d developerA : delete branh  developerA  
+
+12. Git pull : add toàn bộ change mới nhất về 
+
+13. Git revert HEAD : Quay lại thời điểm thay đổi gần nhất 
+
+14. Git diff : show thông tin thay đổi các file  
+
+15. git gc + git gc --prune : Xóa file rác của thực mục git
+
+
+
+Using Git's Logs : check được sự thay đổi của foldel
+
+16. git log : Show thông tin và lịch sử thay đổi
+
+17. git checkout + mã của commit : quay lại thời điểm của lệnh commit này
+
+18. git log --graph : Show thông tin và lịch sử thay đổi có branch
+
+19. git log --stat : show thông tin cụ thể thay đổi cái gì
+
+20. git clone <local repo> <new repo> : copy folder git local
+	vd : git clone git git-clone-new
+
+21. git remote -v : Kiểm tra xem hiện tại mình đang có bao nhiêu remote repo
+
+22. git remote add ten_origin_new url_cua_repo khac : add thêm 1 repo nữa vào folder git
+	vd : git remote add origin_new https://github.com/lamtn1893/Study-AWS.git
+	     git push -u origin_new --all : push code lên repo mới add thêm tên alf origin_new
+

@@ -127,4 +127,26 @@ cut -f 1 -d \, | sort | uniq:  lamtn.txt : cut và giữ lại cột 1 của fil
 sed -i 's/monday/lam/g' testCopyFile.txt : tìm từ monday trong file và thay thế bằng từ lam. ( tham sồ -i là để lưu lại thay đổi )
 sed -i 's/monday/lam/I' testCopyFile.txt : I không quan tâm chữ hoa và thường
 sed -e '1,2 s/Book : //I' testSed.txt : Chỉ thay đổi dòng 1,2
-sed -n '1,3 s/Book : //Ip' testSed.txt : Chỉ in ra nhưng dòng thay đổi
+sed -n '1,3 s/Book : //Ip' testSed.txt : Chỉ in ra nhưng dòng thay đổi. 
+Note : Dấu / (mặc định) ngăn cách các khối code của sed có thể thay thế bằng các ký tự đặc biệt như ^,*,# ...
+
+ls -la /etc/ | sed -n '/^d/p' : show ra out toàn bộ các dòng bắt đầu bằng chữ d (là các folder).
+^d : là bắt đầu bằng chữ d
+p : là để in ra
+
+8.12 : awk
+$0 = whole line : bằng 1 dòng
+$1 = field đầu tiên của dòng
+$2 = field thứ 2 của dòng
+NF = Number của field (giống kiểu index)
+p : in dòng
+d : xóa dòng 
+s/pattern1/pattern2/ :Thay thế sự kiện của pattern 1 bằng sự kiện trong pattern 2.
+
+awk 'BEGIN {print "Hell world!"}' : in ra màn hình hellow world
+awk 'BEGIN { FS=":"; OFS="\t"} {print $1, $6 }' /etc/passwd : in ra cột 1 và 6 của file /etc/passwd
+ls -la | awk 'BEGIN{ sum = 0 } { sum=sum+$5 } END {print sum}' : dữ liệu đầu vào là output của lệnh ls -ls. Câu lệnh thực hiện cộng toàn bộ dung lượng của các file ở cột 5
+date | awk 'BEGIN {print "Local time"; print "----------------"} {print $4,$5}' : in ra dữ liệu thời gian ở cột 4 và 5 của lệnh date
+echo "ta ngoc lam, 1993, 0855556005" | awk -F, '{print substr($1,1,2)}' : ở cột 1 in ký tự 1>2
+echo "Good Day" | awk '{if (length($0) >10) print "String to long"; else print length($0)}' : if else trong awk : kiểm tra độ dài của chuỗi String
+
