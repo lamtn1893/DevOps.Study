@@ -1,0 +1,37 @@
+[1] Khởi tạo file .sh : 
+vim demoShell.sh
+chmod a+x demoShell.sh
+./demoShell.shz
+
+[2] Arguments
+$0 : scripts name
+$1 : firt argument
+$2 : second argument
+$n : 
+"$@" : all argument
+"$#" : argument count
+"$*" : all argument liền với nha và các cách nhau bới IFS
+set -x : show tiến trình và quá trình thực hiện các câu lệnh của shell scripts ra màn hình console
+
+Các loại Arguments
+STDIN(0)  : Standart input
+STDOUT(1) : Standart output
+STDERR(2) : Standart error
+
+code demo :
+#!/bin/bash
+
+AGE=30
+NAME="Lam"
+GENDER="male"
+
+if [ "$NAME" == "Lam" ]; then
+    echo "Your name is already registered."
+elif [ "$AGE" -gt 20 ]; then
+    echo "Your age is enough to join this game."
+elif [ "$GENDER" == "male" ]; then
+    echo "Your gender is suitable to join."
+else
+    echo "Sorry, you don't meet the criteria."
+fi
+

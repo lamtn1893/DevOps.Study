@@ -1,0 +1,9 @@
+---
+- name: Create user using playbook
+  hosts: all
+  become: true
+  tasks:
+    - name: Using module user to create user
+      user:
+        name: tangoclam
+        state: present

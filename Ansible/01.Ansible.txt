@@ -1,0 +1,27 @@
+[root@web ~]# ansible --version
+ansible 2.9.27
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 2.7.5 (default, Nov 14 2023, 16:14:06) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+
+[Để ansible kết nối được với các hosts khác cần]
+- File inventory nằm ở đâu
+- Giao thức kết nối là gì : SSH
+- Port kết nối
+- U/P để login vào server bên kia
+
+[Mức độ ưu tiên của file ansible.cfg]
+- Biến mỗi trường > thư mục hiện tại > thư mục home của user đang login > default
+
+ansible node1 --list-hosts : check xem node1 đã đc add vào file inventory chưa
+ansible -i inventory all -m ping : ping đến toàn bộ các host trong file inventory
+
+[Setup Ansible]
+- add toàn bộ ip và hostanme của toàn bộ các host vào file /etc/hosts trên host control
+- Khởi tạo user ansible trên toàn bộ các host
+- Cấp quyền nhóm whell cho user ansible trên toàn bộ các host : để có thể ssh không cần nhập mật khẩu
+- gen ssh key trên host control sau đó thực hiện copy key này đến toàn bộ các node : 
+ssh-copy-id node1
+

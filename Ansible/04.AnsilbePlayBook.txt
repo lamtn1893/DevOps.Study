@@ -1,0 +1,26 @@
+PlayBook > Play > task > module
+
+
+ansible-playbook -i inventoty install.yml : Câu lệnh chạy với playbook
+
+ansible-playbook -i inventoty install.yml --limit web : thêm --limit web để chỉ install trên các host của group web
+
+ansible-playbook -i inventoty install.yml --syntax-check : Thêm --syntax-check để check syntax trước khi thực hiện 
+
+ansible-playbook -C -i inventoty install.yml : Thêm -C để chạy ở chế độ kiểm tra, thực thiện chạy thử playbook nhưng không có thay đổi nào trên các host
+
+[1] Using Variables in Plays
+---
+- name: Create user using playbook
+  hosts: all
+  become: true
+  vars:
+    action: present
+
+  tasks:
+    - name: Using module user to create user
+      user:
+        name: tangoclam
+        state: "{{ action }}"
+
+ansible-playbook -i inventoty user.yml -e "action=absent" : thêm -e "action=absent" để sửa lại action: present > absent

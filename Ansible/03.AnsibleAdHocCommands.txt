@@ -1,0 +1,8 @@
+ansible host-pattern -m module [-a 'module arguments'] [-i inventory]
+
+ansible -i inventoty all -m ping : check ping all host
+ansible all -b -m user -a 'name=tangoclam state=present' -i inventoty : Khởi tạo user tangoclam trên toàn bộ host. Thêm -b để cấp quyền sudo cho user ansible có thể useradd trên các host
+
+present : để khởi tạo
+absent  : để xóa
+
