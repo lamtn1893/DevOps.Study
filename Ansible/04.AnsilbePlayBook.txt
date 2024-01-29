@@ -24,3 +24,124 @@ ansible-playbook -C -i inventoty install.yml : Thêm -C để chạy ở chế �
         state: "{{ action }}"
 
 ansible-playbook -i inventoty user.yml -e "action=absent" : thêm -e "action=absent" để sửa lại action: present > absent
+
+[2] The register Statement : lưu lại output khi chạy file playbook
+---
+- name: Create file
+  hosts: localhost
+  tasks:
+    - name: Create file
+      file:
+        path: /tmp/newfile
+        state: touch
+      register: output
+
+    - name: Print output to screen
+      debug:
+        msg: "{{ output }}"
+   
+    - name: Write output to file
+      lineinfile:
+        path: /tpm/newfile
+        line: "{{ output.uid }} {{ output.mode }}"
+
+[3] Ansible Vault : Mã hóa trong ansible dùng để quản lý các dữ liệu nhạy cảm
+ansible-vault create secret : Khởi tạo file đc mã hóa bằng ansible vault
+---
+- name: New user is create
+  hosts: web
+  become: yes
+  vars:
+    username:
+      test:
+        uname: tangoclam1
+        description: This devops engineer
+
+  tasks:
+
+    - name: Load variable from encrypted file
+      include_vars:
+        file: secret
+
+    - name: Dislay the encrypted variable
+      debug:
+        msg: "{{ secret }}"
+      no_log: true
+
+    - name: User get created
+      user:
+        name: "{{ username['test']['uname']}}"
+        password: "{{ secret }}"
+        comment: "{{ username['test']['description']}}"
+        state: present
+
+
+ansible-playbook -i inventoty vault.yml --ask-vault-pass : câu lệnh chạy file
+
+[4] Task iteration with Loops
+---
+- name: Create User wwith loop
+  hosts: db
+  become: true
+
+  tasks:
+    - name: Create User
+      user:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ db_users }}"
+
+[5] Ansible facts
+ansible all -i inventoty -m setup : lấy full thông tin các host để sử dụng cho Ansible facts. Làm các điều kiện để thực hiện các Conditions
+
+[6] Triggering tasks with handlers
+
+Sử dụng handlers để chạy 1 task khi 1 task nào đó thay đổi: 
+notify: Reboot system
+
+handlers:
+  - name: Reboot system
+    reboot: 
+
+[7] Recovering from Errors with Blocks
+Có thể sử dụng block rescue
+
+
+Install postgresql : 
+
+---
+- name : Playbook to install postgresql
+  hosts: db
+  become: yes
+
+  pre_tasks:
+    - name: "Install packages"
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - postgresql
+        - postgresql-server
+
+  tasks:
+    - name: "Find out if postgresql in initialized"
+      ansible.builtin.stat:
+        path: "var/lib/pgsql/data/pg_hba.conf"
+      register: postgres_data
+
+    - name: Initialized Postgresql
+      shell: "postgresql-setup initdb"
+      when: not postgres_data.stat.exists
+
+    - name: "Start and enable service"
+      service:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+      with_items:
+        - postgresql
+
+  handlers:
+    - name : restart postgresql
+      service: "name=postgresql state=restarted"
+
