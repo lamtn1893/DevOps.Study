@@ -1,0 +1,13 @@
+Ansible Role : là nơi chưa các playbook hoặc 1 list các task để thực 1 công việc
+[Các folder trong role]
+- defaults : lưu toàn bộ giá trị variables default của role
+- files : Chứa toàn bộ các static file cần tham chiếu của các playbook
+- handlers : Chứa toàn bộ các handlers dùng trong role
+- tasks : chứa toàn bộ tasks sử dụng trong role
+- templates : lưu toàn bộ các file jinja2
+- test : chứa file test.yml để kiểm tra role có hoạt động đúng không
+- vars : Defines các giá trị của variables. Ưu tiên lấy các variable ở trong folder vars
+
+Khởi tạo role :
+ansible-galaxy init apache
+

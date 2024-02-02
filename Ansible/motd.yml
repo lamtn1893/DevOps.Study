@@ -1,0 +1,12 @@
+---
+- name: Deploy motd.j2 to server
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Deploy file using template
+      template:
+        src: motd.j2
+        dest: /etc/motd
+        mode: "0644"
+        group: root
