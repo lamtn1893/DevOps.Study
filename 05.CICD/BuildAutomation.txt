@@ -1,0 +1,4 @@
+1. Compiling code
+2. Dependency Management
+3. Excuting Automated Tests
+4. Packaging the App for Devloymnet

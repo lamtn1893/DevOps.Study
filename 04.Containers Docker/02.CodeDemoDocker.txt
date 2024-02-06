@@ -1,0 +1,60 @@
+docker container ps : show container đang chạy
+
+docker container ps -a : show toàn bộ container đã từ chạy trong máy
+
+docker run -i -t --name a-container alpine 
+  -i : giữ cho container không bị kill
+  -t : cho phép truy cập vào bên trong container
+  --name: Đổi tên cho container
+  (exit ra ngoài container sẽ bị kill)
+
+docker run -i -d -t --name b-container --restart always alpine
+  -d : chạy container ở dạng deteche mode không bị kill khi thoát ra
+  --restart alway : Nếu server bị reboot sẽ chạy lại container khi server khởi động lại (áp dụng
+    khi chạy ở môi trưởng Prod)
+
+docker run -it --name rm-test --rm alpine
+  --rm : để xóa container sau khi container bị kill
+
+docker container start c657204b38b9
+  start : Chạy lại container đang exit
+
+docker exec -it b-container /bin/sh
+  exec -it : để longin vào container
+  /bin/sh  : login dạng shell
+
+docker cp lamtn.txt b-container:/
+  cp lamtn.txt : copy file lamtn.txt từ máy thật và bên trong container
+
+docker cp b-container:lamtn2.txt .
+  copy file từ container > máy thật
+
+docker attach b-container
+  attach : login vào container
+
+---------------------------------------------------------------
+[Manage Container]
+
+docker stop 22c04629ed4a
+  stop : để stop 1 container đang chạy 
+
+docker rm e9a03db7c029
+  rm : Xóa container
+
+docker container prune 
+  prune : xóa all container đang stop
+
+docker rename epic_morse test-rename
+  rename : đổi tên container
+
+docker stats test-rename
+  stats : check xem container đang sử dụng bao nhiêu tài nguyên
+
+docker run -d --name webserver-public -p 80:8080 --restart always kienbt/vietnam:v0.3
+  -p 80 : là port của máy thật
+     8080 : là port của container
+
+docker run -d --name webserver-public-mount -p 2222:8080 -v mount-folder-docker:/var/www/html --restart
+ always kienbt/vietnam:v0.3
+   -v mount-folder-docker:/var/www/html : để mount thử mục mount-folder-docker ở máy host vào bên trong /var/www/html của container
+

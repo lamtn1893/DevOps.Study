@@ -145,7 +145,7 @@ s/pattern1/pattern2/ :Thay thế sự kiện của pattern 1 bằng sự kiện 
 
 awk 'BEGIN {print "Hell world!"}' : in ra màn hình hellow world
 awk 'BEGIN { FS=":"; OFS="\t"} {print $1, $6 }' /etc/passwd : in ra cột 1 và 6 của file /etc/passwd
-ls -la | awk 'BEGIN{ sum = 0 } { sum=sum+$5 } END {print sum}' : dữ liệu đầu vào là output của lệnh ls -ls. Câu lệnh thực hiện cộng toàn bộ dung lượng của các file ở cột 5
+ls -la | awk 'BEGIN{ sum = 0 } { sum=sum+$5 } END {print sum}' : dữ liệu đầu vào là output của lệnh ls -la. Câu lệnh thực hiện cộng toàn bộ dung lượng của các file ở cột 5
 date | awk 'BEGIN {print "Local time"; print "----------------"} {print $4,$5}' : in ra dữ liệu thời gian ở cột 4 và 5 của lệnh date
 echo "ta ngoc lam, 1993, 0855556005" | awk -F, '{print substr($1,1,2)}' : ở cột 1 in ký tự 1>2
 echo "Good Day" | awk '{if (length($0) >10) print "String to long"; else print length($0)}' : if else trong awk : kiểm tra độ dài của chuỗi String

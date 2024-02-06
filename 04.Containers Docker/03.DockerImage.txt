@@ -1,0 +1,47 @@
+1. Comprised of layers
+- Một image thì được xếp lên thành các tầng mỗi 1 tầng gọi là 1 layer. Mỗi 1 image được tạo lên bơi nhiều 
+layers khác nhau. Vd như all code, runtime, libraries, variables, anh configurations are supplied via a
+layered Dockerfile
+
+2. Layers are cached
+- Các layers sễ đc cached lại nên dẫn đến việc có thể sử dụng lại các layers > làm việc với container rất nhanh để deploy
+
+3. Everything we need
+- Trong image chứa tất cả nhứng thứ cần thiết để chạy 1 task hoặc 1 process 
+
+4. Base images on other images
+- Hầu hết các image xây dựng trong container đều đc base trên 1 image khác
+
+----------------------------------------------------------------------------
+[Building a Dockerfile]
+1. Define parent image
+
+2. Create directory structure
+Use Run : để thông báo cho docker biết mình muốn chạy 1 cái comment
+
+3.  Move directorys
+Use WORKDIR + đường dẫn đến folder nào đó : để định nghĩa ra current working directory
+
+4. Copy files
+Use COPY : Cho phép copy từ máy local vào trong image
+
+5. Configura the npm registry
+Use Run : để cài đặt 
+
+6. Install required packages
+Use Run :
+
+7. Copy more files
+User COPY
+
+8. Switch User
+Use User to Switch to the node user
+
+9. Expose port
+Use EXPOSE
+
+10. Run the application
+Use CMD
+
+
+

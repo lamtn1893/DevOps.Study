@@ -24,7 +24,7 @@ Khi nào nên sử dụng Containers:
 + Chia nhỏ các Service mỗi Service chạy trên 1 Containers nên dễ dang scale hay thay thế Containers có sự cố
 
 - Elastic Architectures
-+ 
++ Dễ dàng scale up và scale down dễ dang monitor
 
 - Self-Healing Architectures
 + Do ứng dụng hệ thông Containers nên sẽ có cung cấp nhiều chức năng monitor để theo dõi Containers
